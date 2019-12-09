@@ -12,61 +12,13 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 public class chatAppServer {
-
-	private int port;
-
-	private ServerSocket server;
-	private Socket connection;
-
-	ObjectOutputStream os;
-	ObjectInputStream is;
-
-	public chatAppServer(int port) {
-		this.port = port;
-	}
-
-	public void start(){
-		try {
-			server = new ServerSocket(port, 100);
-
-			connection = server.accept();
-
-			os = new ObjectOutputStream(connection.getOutputStream());
-			is = new ObjectInputStream(connection.getInputStream());
-
-			os.flush();
-
-			while (connection.isConnected()) {
-				try {
-					JOptionPane.showMessageDialog(null, is.readObject());
-					System.out.println(is.readObject());
-					JOptionPane.showMessageDialog(null, is.readUTF());
-				}catch(EOFException e) {
-					JOptionPane.showMessageDialog(null, "Connection Lost");
-					System.exit(0);
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	ServerSocket serverSocket;
+	
+	public chatAppServer() throws IOException{
+		serverSocket=new ServerSocket(8080);
 	}
 	
-	public String getIPAddress() {
-		try {
-			return InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
-			return "ERROR!!!!!";
-		}
-	}
-
-	public int getPort() {
-		return port;
-	}
-
-	
-
-	
+	public void run() {}
 	
 	
 	

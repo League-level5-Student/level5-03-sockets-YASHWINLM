@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
@@ -41,14 +42,21 @@ public class chatAppClient {
 			try {
 				JOptionPane.showMessageDialog(null, is.readObject());
 				System.out.println(is.readObject());
-				os.writeUTF(JOptionPane.showInputDialog("Write a message to the server!"));
-				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
+	
+	public void sendClick() {
+		try {
+			if (os != null) {
+				os.writeObject("CLICK SENT FROM CLIENT");
+				os.flush();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
-	
+}

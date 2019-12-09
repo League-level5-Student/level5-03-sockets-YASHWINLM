@@ -3,12 +3,17 @@ package _00_Click_Chat.gui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 import _00_Click_Chat.networking.Client;
 import _00_Click_Chat.networking.Server;
 
 public class ButtonClicker extends JFrame {
-	JButton button = new JButton("CLICK");
+	JButton button = new JButton("Send Message");
+	JTextField textField= new JTextField(50);
+	JPanel panel= new JPanel();
 	
 	Server server;
 	Client client;
@@ -28,8 +33,13 @@ public class ButtonClicker extends JFrame {
 			button.addActionListener((e)->{
 				server.sendClick();
 			});
-			add(button);
+			add(panel);
+			panel.add(button);
+			panel.add(textField);
+			
 			setVisible(true);
+			setVisible(true);
+			setSize(400, 300);
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			server.start();
@@ -43,8 +53,13 @@ public class ButtonClicker extends JFrame {
 			button.addActionListener((e)->{
 				client.sendClick();
 			});
-			add(button);
+			add(panel);
+			panel.add(button);
+			panel.add(textField);
+			
 			setVisible(true);
+			setVisible(true);
+			setSize(400, 300);
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			client.start();
