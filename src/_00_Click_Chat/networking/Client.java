@@ -52,7 +52,8 @@ public class Client {
 	public void sendClick() {
 		try {
 			if (os != null) {
-				os.writeObject("CLICK SENT FROM CLIENT");
+				String msg=JOptionPane.showInputDialog("Enter a string message to the user");
+			os.writeUTF(msg);
 				os.flush();
 			}
 		} catch (IOException e) {

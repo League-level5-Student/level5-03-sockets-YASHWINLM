@@ -26,7 +26,7 @@ public class Server {
 
 	public void start(){
 		try {
-			server = new ServerSocket(port, 100);
+			server = new ServerSocket(port);
 
 			connection = server.accept();
 
@@ -37,8 +37,9 @@ public class Server {
 
 			while (connection.isConnected()) {
 				try {
-					JOptionPane.showMessageDialog(null, is.readObject());
-					System.out.println(is.readObject());
+					JOptionPane.showMessageDialog(null, is.readUTF());
+					System.out.println(is.readUTF());
+					
 				}catch(EOFException e) {
 					JOptionPane.showMessageDialog(null, "Connection Lost");
 					System.exit(0);
@@ -65,7 +66,7 @@ public class Server {
 	public void sendClick() {
 		try {
 			if (os != null) {
-				os.writeObject("CLICK SENT FROM SERVER");
+				JOptionPane.showMessageDialog(null, is.readUTF());
 				os.flush();
 			}
 		} catch (IOException e) {
